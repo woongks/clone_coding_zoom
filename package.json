@@ -1,0 +1,28 @@
+{
+  "name": "clone_coding_zoom",
+  "version": "1.0.0",
+  "description": "사용하는 기술\r - HTML\r - CSS\r - JavaScript\r - Node.js\r - Socket.io\r - WebRTC",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woongks/clone_coding_zoom.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/woongks/clone_coding_zoom/issues"
+  },
+  "homepage": "https://github.com/woongks/clone_coding_zoom#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.18.9",
+    "@babel/core": "^7.18.9",
+    "@babel/node": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "pug": "^3.0.2"
+  }
+}
