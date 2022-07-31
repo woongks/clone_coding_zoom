@@ -47,6 +47,13 @@ wsServer.on("connection", (socket) => {
     //   done();
     // }, 5000);
   });
+  socket.on("disconnecting", () => {
+    socket.rooms.forEach((room) => socket.to(room).emit("bye"));
+  });
+  socket.on("new_message", (msg, room, done) => {
+    socket.to(room).emit("new_message", msg);
+    done();
+  });
 });
 
 const handleListen = () => console.log("Listening on 3000");
