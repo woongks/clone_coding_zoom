@@ -39,20 +39,26 @@ const wsServer = SocketIO(httpServer);
 //   });
 // }); // connection 이벤트가 발생하면 handleConnection 함수를 실행. on 메서드는 콜백 함수에 socket을 넘겨준다. 소켓은 사용자와 서버의 연결 혹은 연결에 대한 정보를 의미.
 wsServer.on("connection", (socket) => {
+  socket["nickname"] = "Anon";
   socket.on("enter_room", (roomName, done) => {
     done();
     socket.join(roomName);
-    socket.to(roomName).emit("welcome");
+    socket.to(roomName).emit("welcome", socket.nickname);
     // setTimeout(() => {
     //   done();
     // }, 5000);
   });
   socket.on("disconnecting", () => {
-    socket.rooms.forEach((room) => socket.to(room).emit("bye"));
+    socket.rooms.forEach((room) =>
+      socket.to(room).emit("bye", socket.nickname),
+    );
   });
   socket.on("new_message", (msg, room, done) => {
-    socket.to(room).emit("new_message", msg);
+    socket.to(room).emit("new_message", `${socket.nickname}: ${msg}`);
     done();
+  });
+  socket.on("nickname", (nickname) => {
+    socket["nickname"] = nickname;
   });
 });
 
